@@ -7,6 +7,10 @@ Self notes:
 Local address: socket.gethostbyname(socket.gethostname())
 http://code.google.com/p/netaddr/wiki/IPTutorial
 https://github.com/leonidg/Poor-Man-s-traceroute
+
+FIXME
+-----
+Get threading working
 """
 
 import sys
@@ -121,12 +125,14 @@ class Netmap():
 
     def printDot(self):
         print "graph G {"
+        print "node [shape=ellipse];"
+        for net in self.networks:
+            print "\"%s\";" % net
+        print "node [shape=box];"
         for host in self.hosts:
             if 'net' in self.hosts[host]:
-                #print "node [share=ellipse];"
                 print "\"%s\" -- \"%s\";" % (self.hosts[host]['net'], host)
             if 'next' in self.hosts[host]:
-                #print "node [share=box];"
                 for nexthop in self.hosts[host]['next']:
                     print "\"%s\" -- \"%s\";" % (host, nexthop)
         print "}"
