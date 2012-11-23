@@ -36,3 +36,12 @@ nosetests.xml
 
 # Databases
 *.db
+
+# Images
+*.jpg
+*.png
+*.git
+*.bmp
+
+# Graphviz
+*.dot
